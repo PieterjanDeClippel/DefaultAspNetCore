@@ -13,6 +13,7 @@ namespace DefaultAspNetCore
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddHealthChecks();
 
             var app = builder.Build();
 
@@ -23,11 +24,10 @@ namespace DefaultAspNetCore
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseAuthorization();
 
 
+            app.MapHealthChecks("/healthz");
             app.MapControllers();
 
             app.Run();
