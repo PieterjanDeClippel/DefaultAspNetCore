@@ -28,6 +28,7 @@ namespace DefaultAspNetCore
 
 
             app.MapHealthChecks("/healthz");
+            app.MapGet("/", async (context) => context.Response.Redirect("/WeatherForecast"));
             app.MapControllers();
 
             app.Run();
